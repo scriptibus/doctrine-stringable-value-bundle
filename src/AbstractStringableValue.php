@@ -6,19 +6,24 @@ namespace Scriptibus\DoctrineStringableValueBundle;
 
 abstract class AbstractStringableValue implements \Stringable
 {
-    /** @var ?static */
-    private static $instance = null;
+    /**
+     * @var array<string, static>
+     */
+    protected static $instances = [];
 
     private function __construct()
     {
     }
 
-    public static function create(): self
+    /**
+     * @return static
+     */
+    public static function getInstance(): self
     {
-        if (self::$instance !== null){
-            self::$instance = new static();
+        if (!isset(self::$instances[get_called_class()])){
+            self::$instances[get_called_class()] = new static();
         }
 
-        return self::$instance;
+        return self::$instances[get_called_class()];
     }
 }

@@ -7,7 +7,7 @@ namespace Scriptibus\DoctrineStringableValueBundle\Doctrine\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\TextType;
 use InvalidArgumentException;
-use Scriptibus\DoctrineStringableValueBundle\Doctrine\EventListener\ResolverListener;
+use Scriptibus\DoctrineStringableValueBundle\Doctrine\EventListener\GetStringableValueResolverListener;
 use Scriptibus\DoctrineStringableValueBundle\AbstractStringableValue;
 
 class StringableValueType extends TextType
@@ -36,8 +36,8 @@ class StringableValueType extends TextType
             return null;
         }
 
-        $listeners = $platform->getEventManager()->getListeners('getResolver');
-        /** @var ResolverListener $listener */
+        $listeners = $platform->getEventManager()->getListeners('getStringableValueResolver');
+        /** @var GetStringableValueResolverListener $listener */
         $listener = array_shift($listeners);
         $resolver = $listener->getStringableValueResolver();
 

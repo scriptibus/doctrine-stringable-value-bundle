@@ -6,7 +6,7 @@ namespace Scriptibus\DoctrineStringableValueBundle\Doctrine\EventListener;
 
 use Scriptibus\DoctrineStringableValueBundle\Service\StringableValueResolver;
 
-final class ResolverListener
+final class GetStringableValueResolverListener
 {
     private $stringableValueResolver;
 

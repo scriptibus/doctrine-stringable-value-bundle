@@ -52,14 +52,14 @@ final class StringableValueResolver implements StringableValueResolverInterface
             }
 
             /** @var AbstractStringableValue $instance */
-            $instance = call_user_func([$className, 'create']);
+            $instance = call_user_func([$className, 'getInstance']);
 
             if (isset($this->stringableValueMap[$instance->__toString()])) {
                 throw new InvalidConfigurationException(
                     sprintf(
                         'Classes "%s" and "%s" must not share the same string value "%s"',
                         $className,
-                        $this->stringableValueMap[$instance->__toString()],
+                        get_class($this->stringableValueMap[$instance->__toString()]),
                         $instance->__toString()
                     )
                 );

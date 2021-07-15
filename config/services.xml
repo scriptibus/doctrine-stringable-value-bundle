@@ -18,7 +18,7 @@
                     type="service"
                     id="Scriptibus\DoctrineStringableValueBundle\Service\StringableValueResolverInterface"
             />
-            <tag name="doctrine.event_listener" event="getStringableValueResolverListener" />
+            <tag name="doctrine.event_listener" event="getStringableValueResolver" />
         </service>
     </services>
 </container>
