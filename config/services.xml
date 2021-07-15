@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service
+                id="Scriptibus\DoctrineStringableValueBundle\Service\StringableValueResolverInterface"
+                alias="Scriptibus\DoctrineStringableValueBundle\Service\StringableValueResolver"
+        />
+
+        <service id="Scriptibus\DoctrineStringableValueBundle\Service\StringableValueResolver" public="true">
+            <argument>%stringable_value.classes%</argument>
+        </service>
+
+        <service id="Scriptibus\DoctrineStringableValueBundle\Doctrine\EventListener\GetStringableValueResolverListener">
+            <argument
+                    type="service"
+                    id="Scriptibus\DoctrineStringableValueBundle\Service\StringableValueResolverInterface"
+            />
+            <tag name="doctrine.event_listener" event="getStringableValueResolverListener" />
+        </service>
+    </services>
+</container>

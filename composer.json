@@ -1,0 +1,31 @@
+{
+    "name": "scriptibus/doctrine-stringable-value-bundle",
+    "description": "Adds a new doctrine type called stringable_value which allows to save objects, implementing a certain interface, as a string representation",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "scriptibus",
+            "email": "mail@lucasnothnagel.de"
+        }
+    ],
+    "require": {
+        "php": "^7.3 || ^8.0",
+        "doctrine/doctrine-bundle": "^2.4",
+        "symfony/config": "^4.4 || ^5.0",
+        "symfony/dependency-injection": "^4.4 || ^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5 || ^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Scriptibus\\DoctrineStringableValueBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Scriptibus\\DoctrineStringableValueBundle\\Tests\\": "tests/"
+        }
+    }
+}
