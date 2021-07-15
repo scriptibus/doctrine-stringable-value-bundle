@@ -16,7 +16,7 @@ final class DoctrineStringableValueExtension extends Extension
         $configurationTree = new ConfigurationTree();
         $config = $this->processConfiguration($configurationTree, $configs);
 
-        $container->setParameter('stringable_value.classes', $config['classes']);
+        $container->setParameter('stringable_value.classes', $config['classes'] ?? []);
 
         $loader = new XmlFileLoader(
             $container,
