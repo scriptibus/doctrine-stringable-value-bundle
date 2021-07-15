@@ -8,7 +8,8 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\TextType;
 use InvalidArgumentException;
 use Scriptibus\DoctrineStringableValueBundle\Doctrine\EventListener\GetStringableValueResolverListener;
-use Scriptibus\DoctrineStringableValueBundle\AbstractStringableValue;
+use Scriptibus\DoctrineStringableValueBundle\AbstractStringableValueSingleton;
+use Scriptibus\DoctrineStringableValueBundle\StringableValueInterface;
 
 class StringableValueType extends TextType
 {
@@ -21,14 +22,14 @@ class StringableValueType extends TextType
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
-        if (!$value instanceof AbstractStringableValue) {
+        if (!$value instanceof AbstractStringableValueSingleton) {
             throw new InvalidArgumentException('Value must be instance of StringableValue');
         }
 
         return parent::convertToDatabaseValue($value->__toString(), $platform);
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): ?AbstractStringableValue
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?StringableValueInterface
     {
         $value = parent::convertToPHPValue($value, $platform);
 

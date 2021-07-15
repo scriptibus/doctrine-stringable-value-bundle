@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Scriptibus\DoctrineStringableValueBundle\Service;
 
-use Scriptibus\DoctrineStringableValueBundle\AbstractStringableValue;
+use Scriptibus\DoctrineStringableValueBundle\StringableValueInterface;
 
 interface StringableValueResolverInterface
 {
-    public function getObjectForValue(string $value): AbstractStringableValue;
+    public function getObjectForValue(string $value): StringableValueInterface;
 }

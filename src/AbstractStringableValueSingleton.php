@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Scriptibus\DoctrineStringableValueBundle;
 
-abstract class AbstractStringableValue implements \Stringable
+abstract class AbstractStringableValueSingleton implements StringableValueInterface
 {
     /**
      * @var array<string, static>
@@ -16,9 +16,9 @@ abstract class AbstractStringableValue implements \Stringable
     }
 
     /**
-     * @return static
+     * {@inheritdoc}
      */
-    public static function getInstance(): self
+    public static function create(): StringableValueInterface
     {
         if (!isset(self::$instances[get_called_class()])){
             self::$instances[get_called_class()] = new static();

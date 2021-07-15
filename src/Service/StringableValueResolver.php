@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace Scriptibus\DoctrineStringableValueBundle\Service;
 
 use RuntimeException;
-use Scriptibus\DoctrineStringableValueBundle\AbstractStringableValue;
+use Scriptibus\DoctrineStringableValueBundle\AbstractStringableValueSingleton;
+use Scriptibus\DoctrineStringableValueBundle\StringableValueInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 final class StringableValueResolver implements StringableValueResolverInterface
 {
     /**
-     * @var array<AbstractStringableValue>
+     * @var array<AbstractStringableValueSingleton>
      */
     private $stringableValueMap;
 
@@ -24,7 +25,7 @@ final class StringableValueResolver implements StringableValueResolverInterface
         $this->initStringableValueMap($classes);
     }
 
-    public function getObjectForValue(string $value): AbstractStringableValue
+    public function getObjectForValue(string $value): StringableValueInterface
     {
         if (isset($this->stringableValueMap[$value])) {
             return $this->stringableValueMap[$value];
@@ -45,14 +46,14 @@ final class StringableValueResolver implements StringableValueResolverInterface
             if (!class_exists($className)) {
                 throw new InvalidConfigurationException(sprintf('Class "%s" could not be found.', $className));
             }
-            if (!is_subclass_of($className, AbstractStringableValue::class)) {
+            if (!is_subclass_of($className, AbstractStringableValueSingleton::class)) {
                 throw new InvalidConfigurationException(
-                    sprintf('Class "%s" must implement "%s"', $className, AbstractStringableValue::class)
+                    sprintf('Class "%s" must implement "%s"', $className, AbstractStringableValueSingleton::class)
                 );
             }
 
-            /** @var AbstractStringableValue $instance */
-            $instance = call_user_func([$className, 'getInstance']);
+            /** @var StringableValueInterface $instance */
+            $instance = call_user_func([$className, 'create']);
 
             if (isset($this->stringableValueMap[$instance->__toString()])) {
                 throw new InvalidConfigurationException(
