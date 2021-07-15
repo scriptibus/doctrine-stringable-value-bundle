@@ -7,11 +7,11 @@ namespace Scriptibus\DoctrineStringableValueBundle\Doctrine\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\TextType;
 use InvalidArgumentException;
-use Scriptibus\DoctrineStringableValueBundle\Doctrine\EventListener\GetStringableValueResolverListener;
 use Scriptibus\DoctrineStringableValueBundle\AbstractStringableValueSingleton;
+use Scriptibus\DoctrineStringableValueBundle\Doctrine\EventListener\GetStringableValueResolverListener;
 use Scriptibus\DoctrineStringableValueBundle\StringableValueInterface;
 
-class StringableValueType extends TextType
+final class StringableValueType extends TextType
 {
     public const STRINGABLE_VALUE = 'stringable_value';
 
@@ -33,17 +33,15 @@ class StringableValueType extends TextType
     {
         $value = parent::convertToPHPValue($value, $platform);
 
-        if ($value === null) {
+        if (null === $value) {
             return null;
         }
 
         $listeners = $platform->getEventManager()->getListeners('getStringableValueResolver');
         /** @var GetStringableValueResolverListener $listener */
-        $listener = array_shift($listeners);
+        $listener = \array_shift($listeners);
         $resolver = $listener->getStringableValueResolver();
 
         return $resolver->getObjectForValue($value);
     }
-
-
 }

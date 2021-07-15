@@ -20,10 +20,10 @@ abstract class AbstractStringableValueSingleton implements StringableValueInterf
      */
     public static function create(): StringableValueInterface
     {
-        if (!isset(self::$instances[get_called_class()])){
-            self::$instances[get_called_class()] = new static();
+        if (!isset(self::$instances[static::class])) {
+            self::$instances[static::class] = new static();
         }
 
-        return self::$instances[get_called_class()];
+        return self::$instances[static::class];
     }
 }
