@@ -11,7 +11,7 @@ abstract class AbstractStringableValueSingleton implements StringableValueInterf
      */
     protected static $instances = [];
 
-    private function __construct()
+    final private function __construct()
     {
     }
 

@@ -8,6 +8,9 @@ use Scriptibus\DoctrineStringableValueBundle\Service\StringableValueResolver;
 
 final class GetStringableValueResolverListener
 {
+    /**
+     * @var StringableValueResolver
+     */
     private $stringableValueResolver;
 
     public function __construct(StringableValueResolver $stringableValueResolver)

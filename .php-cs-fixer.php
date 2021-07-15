@@ -11,11 +11,7 @@ return (new PhpCsFixer\Config())
     ->setRules([
                    '@Symfony' => true,
                    '@Symfony:risky' => true,
-                   '@PHP71Migration:risky' => true,
-                   '@PHPUnit75Migration:risky' => true,
                    'ordered_imports' => true,
-                   'declare_strict_types' => true,
-                   'native_function_invocation' => ['include' => ['@all']],
                    'final_class' => true,
                ])
     ->setFinder($finder)

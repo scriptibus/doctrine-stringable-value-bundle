@@ -11,6 +11,9 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 final class DoctrineStringableValueExtension extends Extension
 {
+    /**
+     * @param array<string, mixed> $configs
+     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configurationTree = new ConfigurationTree();
