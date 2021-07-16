@@ -8,7 +8,7 @@ use Doctrine\Common\EventManager;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\TextType;
 use InvalidArgumentException;
-use Scriptibus\DoctrineStringableValueBundle\Doctrine\EventListener\GetStringableValueResolverListener;
+use Scriptibus\DoctrineStringableValueBundle\Doctrine\EventListener\GetStringableValueResolverListenerInterface;
 use Scriptibus\DoctrineStringableValueBundle\StringableValueInterface;
 
 final class StringableValueType extends TextType
@@ -40,7 +40,7 @@ final class StringableValueType extends TextType
         /** @var EventManager $eventManager */
         $eventManager = $platform->getEventManager();
         $listeners = $eventManager->getListeners('getStringableValueResolver');
-        /** @var GetStringableValueResolverListener $listener */
+        /** @var GetStringableValueResolverListenerInterface $listener */
         $listener = array_shift($listeners);
         $resolver = $listener->getStringableValueResolver();
 

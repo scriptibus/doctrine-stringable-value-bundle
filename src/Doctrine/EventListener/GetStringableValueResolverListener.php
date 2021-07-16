@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Scriptibus\DoctrineStringableValueBundle\Doctrine\EventListener;
 
-use Scriptibus\DoctrineStringableValueBundle\Service\StringableValueResolver;
+use Scriptibus\DoctrineStringableValueBundle\Service\StringableValueResolverInterface;
 
-final class GetStringableValueResolverListener
+final class GetStringableValueResolverListener implements GetStringableValueResolverListenerInterface
 {
     /**
-     * @var StringableValueResolver
+     * @var StringableValueResolverInterface
      */
     private $stringableValueResolver;
 
-    public function __construct(StringableValueResolver $stringableValueResolver)
+    public function __construct(StringableValueResolverInterface $stringableValueResolver)
     {
         $this->stringableValueResolver = $stringableValueResolver;
     }
 
-    public function getStringableValueResolver(): StringableValueResolver
+    public function getStringableValueResolver(): StringableValueResolverInterface
     {
         return $this->stringableValueResolver;
     }

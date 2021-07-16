@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 final class DoctrineStringableValueExtension extends Extension
 {
     /**
-     * @param array<string, mixed> $configs
+     * @param array<int, array<string, array<int, string>>> $configs
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
