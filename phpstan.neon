@@ -5,5 +5,3 @@ parameters:
     level:
         max
     tmpDir: var/cache/phpstan
-
-#includes: [phpstan-baseline.neon]

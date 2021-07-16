@@ -1,0 +1,19 @@
+name: CI-PHP-8
+
+on: [push]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - uses: php-actions/composer@v6
+              with:
+                  php_version: 8.0
+            - name: tests
+              run: vendor/bin/phpunit
+            - name: php-cs-fixer
+              run: vendor/bin/php-cs-fixer fix --dry-run
+            - name: phpstan
+              run: vendor/bin/phpstan analyze
