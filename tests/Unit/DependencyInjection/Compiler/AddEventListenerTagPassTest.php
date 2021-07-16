@@ -16,13 +16,19 @@ final class AddEventListenerTagPassTest extends TestCase
     {
         $pass = new AddEventListenerTagPass();
         $builderMock = self::createMock(ContainerBuilder::class);
+        $alias = 'some-alias';
         $definitionMock = self::createMock(Definition::class);
 
-        $builderMock->expects(self::once())->method('getDefinition')->with(
+        $builderMock->expects(self::once())->method('getAlias')->with(
             GetStringableValueResolverListenerInterface::class
-        )->willReturn($definitionMock);
+        )->willReturn($alias);
 
-        $definitionMock->expects(self::once())->method('addTag')->with('doctrine.event_listener', ['event' => 'getStringableValueResolver']);
+        $builderMock->expects(self::once())->method('getDefinition')->with($alias)->willReturn($definitionMock);
+
+        $definitionMock->expects(self::once())->method('addTag')->with(
+            'doctrine.event_listener',
+            ['event' => 'getStringableValueResolver']
+        );
 
         $pass->process($builderMock);
     }

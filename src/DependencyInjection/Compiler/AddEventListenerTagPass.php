@@ -12,7 +12,8 @@ final class AddEventListenerTagPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-        $definition = $container->getDefinition(GetStringableValueResolverListenerInterface::class);
+        $alias = $container->getAlias(GetStringableValueResolverListenerInterface::class);
+        $definition = $container->getDefinition((string) $alias);
         $definition->addTag('doctrine.event_listener', ['event' => 'getStringableValueResolver']);
     }
 }
